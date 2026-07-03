@@ -626,7 +626,7 @@ static common::offset_t tableFunc(const TableFuncInput& input, TableFuncOutput&)
                 sumIntraWeights.load() * state.modularityConstant -
                 (sumWeightedDegrees.load() * state.modularityConstant * state.modularityConstant);
 
-            if (currMod - oldMod < config.tolerance) {
+            if (currMod - oldMod < config.tolerance.getParamVal()) {
                 // The community assignments in `currComm` don't increase the modularity. The
                 // assignments in `acceptedComm` are the final assignments for this phase.
                 break;

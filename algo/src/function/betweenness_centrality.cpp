@@ -16,7 +16,7 @@
 #include "main/client_context.h"
 #include "processor/execution_context.h"
 #include "storage/buffer_manager/memory_manager.h"
-
+#include "transaction/transaction_context.h"
 using namespace gorgonzola::processor;
 using namespace gorgonzola::common;
 using namespace gorgonzola::binder;
@@ -520,7 +520,7 @@ static common::offset_t tableFunc(const TableFuncInput& input, TableFuncOutput&)
     }
     bool undirected =
         StringUtils::getLower(config.direction.getParamVal()) == Direction::UNDIRECTED;
-    const auto numNodes = graph->getMaxOffset(clientContext->getTransaction(), tableId);
+    const auto numNodes = graph->getMaxOffset(transaction::TransactionContext::Get(*clientContext)->getActiveTransaction(), tableId);
     BetweennessCentralityState state{mm, numNodes};
     BCFwdData fwdData(mm, numNodes);
     BCBwdData bwdData(mm, numNodes);
