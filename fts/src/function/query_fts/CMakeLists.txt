@@ -1,4 +1,4 @@
-add_library(kuzu_query_fts_function
+add_library(gorgonzola_query_fts_function
         OBJECT
         query_fts_index.cpp
         query_fts_pattern_match.cpp
@@ -6,5 +6,5 @@ add_library(kuzu_query_fts_function
         query_fts_term_lookup.cpp)
 
 set(FTS_EXTENSION_OBJECT_FILES
-        ${FTS_EXTENSION_OBJECT_FILES} $<TARGET_OBJECTS:kuzu_query_fts_function>
+        ${FTS_EXTENSION_OBJECT_FILES} $<TARGET_OBJECTS:gorgonzola_query_fts_function>
         PARENT_SCOPE)
