@@ -1,0 +1,16 @@
+name: Build Extensions
+
+on:
+  workflow_dispatch:
+
+  workflow_call:
+    inputs:
+      x86_64LinuxOnly:
+          type: boolean
+          required: false
+          default: false
+
+jobs:
+  call-workflow:
+    uses: gorgonzola-graph-db/gorgonzola-workflows/.github/workflows/build-extensions.yml@master
+    secrets: inherit

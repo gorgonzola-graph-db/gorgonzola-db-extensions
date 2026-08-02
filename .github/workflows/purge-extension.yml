@@ -1,0 +1,10 @@
+name: Purge Extensions
+
+on: 
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    uses: gorgonzola-graph-db/gorgonzola-workflows/.github/workflows/purge-extension.yml@master
+    secrets: inherit

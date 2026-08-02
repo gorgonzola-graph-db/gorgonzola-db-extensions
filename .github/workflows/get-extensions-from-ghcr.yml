@@ -1,0 +1,9 @@
+name: Get Extensions from GHCR
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  call-workflow:
+    uses: gorgonzola-graph-db/gorgonzola-workflows/.github/workflows/get-extensions-from-ghcr.yml@master
+    secrets: inherit

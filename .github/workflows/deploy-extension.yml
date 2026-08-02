@@ -1,0 +1,9 @@
+name: Deploy Extensions
+
+on: 
+  workflow_call:
+
+jobs:
+  call-workflow:
+    uses: gorgonzola-graph-db/gorgonzola-workflows/.github/workflows/deploy-extension.yml@master
+    secrets: inherit
