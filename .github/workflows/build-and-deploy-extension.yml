@@ -1,23 +1,29 @@
 name: Build and Deploy Extensions
 
-on: 
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
   workflow_dispatch:
-    inputs:
-      isNightly:
-        description: 'Is this a nightly build?'
-        type: boolean
-        required: true
-        default: false
 
-  workflow_call:
-    inputs:
-      isNightly:
-        type: boolean
-        description: 'Is this a nightly build?'
-        required: true
-        default: false
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   call-workflow:
+    if: github.event.pull_request.draft == false
     uses: gorgonzola-graph-db/gorgonzola-workflows/.github/workflows/build-and-deploy-extension.yml@master
     secrets: inherit
